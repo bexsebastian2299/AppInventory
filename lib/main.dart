@@ -9,8 +9,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'src/config/router.dart' as router;
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = (FlutterErrorDetails details){
     FlutterError.dumpErrorToConsole(details);
     runApp(ErrorWidgetClass(details));
@@ -55,24 +57,24 @@ class _MyAppState extends State<MyApp> {
         },
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          localizationsDelegates: const [
-            // GlobalMaterialLocalizations.delegate,
+          localizationsDelegates: [
+            // GlobalMaterialLocations.delegate,
             // GlobalWidgetsLocalizations.delegate,
             // GlobalCupertinoLocalizations.delegate,
           ],
-          supportedLocales: const [
-            Locale('es', 'CO')
-          ],
+          // supportedLocales: const [
+          //   Locale('es', 'CO')
+          // ],
           title: appTitle,
           theme: AppTheme.light,
           darkTheme: AppTheme.dark,
           themeMode: ThemeMode.system,
-          navigatorKey: locator<NavigationService>().navigatorKey,
+          // navigatorKey: locator<NavigationService>().navigatorKey,
           onUnknownRoute: (RouteSettings settings) => MaterialPageRoute(
             builder: (BuildContext context) => UndefinedView(
               name: settings.name,
             )),
-            initialRoute: '/splash',
+            initialRoute: '/initial',
             onGenerateRoute: router.generateRoute,
         ),
       ),

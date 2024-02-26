@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 class NavigationService {
+  
   static NavigationService? _instance;
 
   static Future<NavigationService?> getInstance() async {
