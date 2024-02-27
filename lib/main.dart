@@ -1,6 +1,10 @@
 import 'package:bexpicking_app/src/config/theme.dart';
+import 'package:bexpicking_app/src/domain/repositories/api_repository.dart';
 import 'package:bexpicking_app/src/locator.dart';
+import 'package:bexpicking_app/src/presentation/blocs/initial/initial_state.dart';
 import 'package:bexpicking_app/src/presentation/providers/initial/initial_provider.dart';
+import 'package:bexpicking_app/src/presentation/providers/login/login_provider.dart';
+import 'package:bexpicking_app/src/presentation/providers/splash/splash_provider.dart';
 import 'package:bexpicking_app/src/presentation/views/global/undefined_view.dart';
 import 'package:bexpicking_app/src/presentation/widgets/custom_error_widget.dart';
 import 'package:bexpicking_app/src/services/navigation.dart';
@@ -10,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'src/config/router.dart' as router;
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,9 +50,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
+      providers: [    
         ListenableProvider(
           create: (context) => InitialProvider()
+        ),
+        ListenableProvider(
+          create: (context) => LoginProvider()
+        ),
+        Provider(
+          create: (context) => SplashProvider()
         )
       ],
       child: GestureDetector(
