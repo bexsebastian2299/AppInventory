@@ -34,7 +34,7 @@ class _InitialViewState extends State<InitialView> {
         children: [
           const SizedBox(height: 50,),
           Image.asset('assets/images/wms-icon.png', width: 300,),
-          const SizedBox(height: 20,),
+          const SizedBox(height: 40,),
           Padding(
             padding: const EdgeInsets.only(
               left: kDefaultPadding,
@@ -54,7 +54,6 @@ class _InitialViewState extends State<InitialView> {
               ),
             ),
           ),
-
           Column(
             children: [
               Padding(
