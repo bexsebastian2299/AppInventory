@@ -60,28 +60,28 @@ class _LoginViewState extends State<LoginView> {
             ),),
           Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: kDefaultPadding,
-                  right: kDefaultPadding,
-                  bottom: kDefaultPadding),
-                child: DropdownButtonFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  ),
-                  value: value,
-                  dropdownColor: const Color(0xFFFFDAD3),
-                  icon: const Icon(Icons.arrow_downward),
-                  elevation: 16,
-                  onChanged: (Object? value) => loginProvider.setDropdownValue(value as String?),
-                  items: list.map<DropdownMenuItem<String>>((String value){
-                    return DropdownMenuItem<String>(
-                      value: value, child: Text(value),
-                    );
-                  }).toList(),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(
+              //     left: kDefaultPadding,
+              //     right: kDefaultPadding,
+              //     bottom: kDefaultPadding),
+              //   child: DropdownButtonFormField(
+              //     decoration: InputDecoration(
+              //       border: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(12)),
+              //     ),
+              //     value: value,
+              //     dropdownColor: const Color(0xFFFFDAD3),
+              //     icon: const Icon(Icons.arrow_downward),
+              //     elevation: 16,
+              //     onChanged: (Object? value) => loginProvider.setDropdownValue(value as String?),
+              //     items: list.map<DropdownMenuItem<String>>((String value){
+              //       return DropdownMenuItem<String>(
+              //         value: value, child: Text(value),
+              //       );
+              //     }).toList(),
+              //   ),
+              // ),
 
               Padding(
                 padding: const EdgeInsets.only(

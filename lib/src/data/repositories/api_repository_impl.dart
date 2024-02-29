@@ -11,4 +11,7 @@ class ApiRepositoryImpl extends BaseApiRepository implements ApiRepository{
   final ApiService _apiService;
 
   ApiRepositoryImpl(this._apiService);
+
+  //aqui van las funciones
+
 }

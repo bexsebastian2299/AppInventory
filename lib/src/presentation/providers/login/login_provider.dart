@@ -15,7 +15,7 @@ class LoginProvider  with ChangeNotifier {
 
   String? dropdownValue;
 
-  setDropdownValue(String? v){
+  setDropdownValue(String? v) {
     dropdownValue = v;
     notifyListeners();
   }
