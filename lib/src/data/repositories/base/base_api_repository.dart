@@ -1,4 +1,4 @@
-// ignore_for_file: empty_catches, deprecated_member_use
+// ignore_for_file: empty_catches, deprecated_member_use, avoid_print
 
 import 'dart:io' show HttpStatus;
 
