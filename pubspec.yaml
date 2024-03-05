@@ -23,7 +23,6 @@ dependencies:
   
   flutter_localizations:
     sdk: flutter
-  sqlbrite: ^2.6.0
   sqflite: ^2.3.2
   sqflite_migration: ^0.3.0
 

@@ -19,7 +19,7 @@ class ApiService {
     ApiService(){
       dio = Dio(
         BaseOptions(
-          baseUrl: '',
+          baseUrl: '', //url del dominio
           connectTimeout: const Duration(minutes: 1),
           receiveTimeout: const Duration(minutes: 1),
           headers: {HttpHeaders.contentTypeHeader: 'application/json'}),

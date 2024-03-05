@@ -1,8 +1,10 @@
 import 'package:bexpicking_app/src/presentation/providers/initial/initial_provider.dart';
 import 'package:bexpicking_app/src/presentation/providers/login/login_provider.dart';
+import 'package:bexpicking_app/src/presentation/widgets/default_button.dart';
 import 'package:bexpicking_app/src/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -14,6 +16,8 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
 
   late LoginProvider loginProvider;
+  bool isLoading = false;
+  bool showSuffix = true;
   
   @override
   void initState() {
@@ -34,14 +38,19 @@ class _LoginViewState extends State<LoginView> {
     var value = context.watch<LoginProvider>().dropdownValue;
     final list = context.read<LoginProvider>().list;
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: SizedBox(
-          height: size.height,
-          width: size.width,
-          child: _buildBodySuccess(list, value),
-        )
+    return WillPopScope(
+      onWillPop: ()async{
+        return false;
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: SizedBox(
+            height: size.height,
+            width: size.width,
+            child: _buildBodySuccess(list, value),
+          )
+        ),
       ),
     );
   }
@@ -60,28 +69,29 @@ class _LoginViewState extends State<LoginView> {
             ),),
           Column(
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //     left: kDefaultPadding,
-              //     right: kDefaultPadding,
-              //     bottom: kDefaultPadding),
-              //   child: DropdownButtonFormField(
-              //     decoration: InputDecoration(
-              //       border: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(12)),
-              //     ),
-              //     value: value,
-              //     dropdownColor: const Color(0xFFFFDAD3),
-              //     icon: const Icon(Icons.arrow_downward),
-              //     elevation: 16,
-              //     onChanged: (Object? value) => loginProvider.setDropdownValue(value as String?),
-              //     items: list.map<DropdownMenuItem<String>>((String value){
-              //       return DropdownMenuItem<String>(
-              //         value: value, child: Text(value),
-              //       );
-              //     }).toList(),
-              //   ),
-              // ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: kDefaultPadding,
+                  right: kDefaultPadding,
+                  bottom: kDefaultPadding),
+                child: Text('Aqui va la lista deplegable')
+                
+//                 DropdownButton<String>(
+//   value: loginProvider.dropdownValue, // Use dropdownValue from the provider
+//   dropdownColor: const Color(0xFFFFDAD3),
+//   icon: const Icon(Icons.arrow_downward),
+//   elevation: 16,
+//   onChanged: (String? selectedValue) {
+//     loginProvider.setDropdownValue(selectedValue);
+//   },
+//   items: list.map<DropdownMenuItem<String>>((String value) {
+//     return DropdownMenuItem<String>(
+//       value: value,
+//       child: Text(value),
+//     );
+//   }).toList(),
+// )
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(
@@ -145,6 +155,36 @@ class _LoginViewState extends State<LoginView> {
                     floatingLabelBehavior: FloatingLabelBehavior.always
                   ),
                 ),
+              ),
+              Column(
+                children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: kDefaultPadding,
+                      right: kDefaultPadding,
+                      bottom: kDefaultPadding
+                    ),
+                  child: DefaultButton(
+                      widget: isLoading 
+                      ? const CircularProgressIndicator(
+                        valueColor: 
+                            AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                      : Text('Ingresar'.toUpperCase(),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white
+                        ),
+                      ),
+                      press: () async {
+                        setState(() {
+                          
+                        });
+                      },
+                    ),
+                  ),
+                ],
               )
             ],
           )
