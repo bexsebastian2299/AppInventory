@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import '../../../domain/repositories/api_repository.dart';
 
 
+// final LocalStorageService _storageService = locator<LocalStorageService>();
+// final NavigationService _navigationService = locator<NavigationService>();
+
+
 class LoginProvider  with ChangeNotifier {
   // final ApiRepository apiRepository;
   List<String> list = <String>['Database 1', 'Database 2'];

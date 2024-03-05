@@ -1,5 +1,6 @@
 import 'package:bexpicking_app/src/presentation/providers/initial/initial_provider.dart';
 import 'package:bexpicking_app/src/presentation/providers/login/login_provider.dart';
+import 'package:bexpicking_app/src/presentation/views/user/home/index.dart';
 import 'package:bexpicking_app/src/presentation/widgets/default_button.dart';
 import 'package:bexpicking_app/src/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,6 @@ class _LoginViewState extends State<LoginView> {
 
     final Size size = MediaQuery.of(context).size;
     var value = context.watch<LoginProvider>().dropdownValue;
-    final list = context.read<LoginProvider>().list;
 
     return WillPopScope(
       onWillPop: ()async{
@@ -48,7 +48,7 @@ class _LoginViewState extends State<LoginView> {
           child: SizedBox(
             height: size.height,
             width: size.width,
-            child: _buildBodySuccess(list, value),
+            child: _buildBodySuccess( value),
           )
         ),
       ),
@@ -56,7 +56,10 @@ class _LoginViewState extends State<LoginView> {
   }
 
 
-  Widget _buildBodySuccess(value, list){
+  Widget _buildBodySuccess(value ){
+
+    String dropdownValue = 'Database 1';
+
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -74,23 +77,35 @@ class _LoginViewState extends State<LoginView> {
                   left: kDefaultPadding,
                   right: kDefaultPadding,
                   bottom: kDefaultPadding),
-                child: Text('Aqui va la lista deplegable')
-                
-//                 DropdownButton<String>(
-//   value: loginProvider.dropdownValue, // Use dropdownValue from the provider
-//   dropdownColor: const Color(0xFFFFDAD3),
-//   icon: const Icon(Icons.arrow_downward),
-//   elevation: 16,
-//   onChanged: (String? selectedValue) {
-//     loginProvider.setDropdownValue(selectedValue);
-//   },
-//   items: list.map<DropdownMenuItem<String>>((String value) {
-//     return DropdownMenuItem<String>(
-//       value: value,
-//       child: Text(value),
-//     );
-//   }).toList(),
-// )
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12))
+                  ),
+                  value: dropdownValue,
+                  dropdownColor: const Color(0xFFFFDAD3),
+                  icon: const Icon(Icons.menu),
+                  style: const TextStyle(color: Colors.black),
+                  onChanged: (String? newValue){
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                  items: const [
+                    DropdownMenuItem<String>(
+                      value: 'Database 1',
+                      child: Text('Database 1')
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'Database 2',
+                      child: Text('Database 2')
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'Database 3',
+                      child: Text('Database 3')
+                    )
+                  ],
+                ),
               ),
 
               Padding(
@@ -179,7 +194,11 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       press: () async {
                         setState(() {
-                          
+                          //aqui vamos a navegar a la otra ruta
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => HomeView())
+                          );
                         });
                       },
                     ),
