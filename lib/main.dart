@@ -15,6 +15,9 @@ import 'package:provider/provider.dart';
 import 'src/config/router.dart' as router;
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+//odoo package
+import 'package:odoo_rpc/odoo_rpc.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

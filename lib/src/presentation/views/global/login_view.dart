@@ -58,7 +58,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _buildBodySuccess(value ){
 
-    String dropdownValue = 'Database 1';
+    final List<String> list = <String>['Database 1', 'Database 2', 'Database 3'];
 
     return SingleChildScrollView(
       child: Column(
@@ -82,29 +82,16 @@ class _LoginViewState extends State<LoginView> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12))
                   ),
-                  value: dropdownValue,
+                  value: value,
                   dropdownColor: const Color(0xFFFFDAD3),
-                  icon: const Icon(Icons.menu),
-                  style: const TextStyle(color: Colors.black),
-                  onChanged: (String? newValue){
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
-                  items: const [
-                    DropdownMenuItem<String>(
-                      value: 'Database 1',
-                      child: Text('Database 1')
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Database 2',
-                      child: Text('Database 2')
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Database 3',
-                      child: Text('Database 3')
-                    )
-                  ],
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  onChanged: (String? newValue) => 
+                      loginProvider.setDropdownValue(value),
+                  items: list.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value, child: Text(value));
+                  }).toList(),
                 ),
               ),
 
@@ -197,7 +184,7 @@ class _LoginViewState extends State<LoginView> {
                           //aqui vamos a navegar a la otra ruta
                           Navigator.push(
                             context, 
-                            MaterialPageRoute(builder: (context) => HomeView())
+                            MaterialPageRoute(builder: (context) => const HomeView())
                           );
                         });
                       },
